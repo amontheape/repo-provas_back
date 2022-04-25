@@ -18,9 +18,11 @@ export async function logIn( req : Request, res : Response ) {
 }
 
 export async function logOut( req : Request, res : Response ) {
-  const user = req.body
+  const { authorization } = req.headers as { authorization : string }
+  
+  const token = authorization?.replace("Bearer", "")
 
-  const token = await service.logOut( user )
+  await service.logOut( token )
 
   res.sendStatus(200)
 }

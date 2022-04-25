@@ -35,9 +35,7 @@ export async function logIn( { email, password } : userRepository.User ) {
 }
 
 export async function logOut( token : string ) {
-  const sessionExists = await sessionRepository.findByToken( token )
+  const { id } = await sessionRepository.findByToken( token ) as { id : number }
 
-  if ( sessionExists ) {
-    await sessionRepository.removeSession( sessionExists.id )
-  } throw { type: 'not_found', message: 'token not found'}
+  await sessionRepository.removeSession( id )
 }
