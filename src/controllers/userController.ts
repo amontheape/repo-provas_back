@@ -19,8 +19,8 @@ export async function logIn( req : Request, res : Response ) {
 
 export async function logOut( req : Request, res : Response ) {
   const { authorization } = req.headers as { authorization : string }
-  
-  const token = authorization?.replace("Bearer", "")
+
+  const token = authorization?.replace("Bearer ", "")
 
   await service.logOut( token )
 

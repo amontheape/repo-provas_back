@@ -10,4 +10,4 @@ userRouter.post('/sign-up', validateSchema(userSchema), controller.register)
 userRouter.post('/sign-in', validateSchema(userSchema), controller.logIn)
 userRouter.post('/sign-out', validateToken, controller.logOut)
 
-export default userRouter;
+export default userRouter

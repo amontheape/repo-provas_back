@@ -22,7 +22,7 @@ export async function findByUserId( userId : number ) {
 export async function findByToken( token : string ) {
   return await client.session.findFirst({
     where: {
-      token
+      token : token
     }
   })
 }

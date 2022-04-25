@@ -20,11 +20,13 @@ export async function logIn( { email, password } : userRepository.User ) {
   const sessionExists = await sessionRepository.findByUserId( userExists.id )
   
   if ( sessionExists ) {
-    jwt.verify( sessionExists.token, config.secretJWT, ( err ) => { 
+    try {
+      jwt.verify( sessionExists.token, config.secretJWT)
+      return { token: sessionExists.token }
+    } catch(err) {
       console.log(err)
       throw { type: 'unauthorized', message: 'token does not match requirements'}
-    } )
-    return { token: sessionExists.token }
+    }
   }
 
   const token = jwt.sign( { userId: userExists.id }, config.secretJWT, { expiresIn: 60*60*24 } )
