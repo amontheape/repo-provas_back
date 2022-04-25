@@ -8,3 +8,19 @@ export async function  register( req : Request, res : Response ) {
 
   res.sendStatus(201)
 }
+
+export async function logIn( req : Request, res : Response ) {
+  const user = req.body
+
+  const token = await service.logIn( user )
+
+  res.status(200).send(token)
+}
+
+export async function logOut( req : Request, res : Response ) {
+  const user = req.body
+
+  const token = await service.logOut( user )
+
+  res.sendStatus(200)
+}

@@ -5,13 +5,13 @@ export interface User {
   password : string
 }
 
-export async function createUser(user: User) {
+export async function createUser( user : User ) {
   await client.user.create({
     data: user
   })
 }
 
-export async function findByEmail(email: string) {
+export async function findByEmail( email : string ) {
   return await client.user.findUnique({
     where: {
       email
